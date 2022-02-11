@@ -1,6 +1,6 @@
 # openstreetmap-tile-server
 
-[![Build Status](https://travis-ci.org/Overv/openstreetmap-tile-server.svg?branch=master)](https://travis-ci.org/Overv/openstreetmap-tile-server) [![](https://images.microbadger.com/badges/image/overv/openstreetmap-tile-server.svg)](https://microbadger.com/images/overv/openstreetmap-tile-server "openstreetmap-tile-server")
+[![Build Status](https://travis-ci.org/aesolutionssrl/marin-osm.svg?branch=master)](https://travis-ci.org/aesolutionssrl/marin-osm) [![](https://images.microbadger.com/badges/image/aesolutionssrl/marin-osm.svg)](https://microbadger.com/images/aesolutionssrl/marin-osm "openstreetmap-tile-server")
 
 This container allows you to easily set up an OpenStreetMap PNG tile server given a `.osm.pbf` file. It is based on the [latest Ubuntu 18.04 LTS guide](https://switch2osm.org/serving-tiles/manually-building-a-tile-server-18-04-lts/) from [switch2osm.org](https://switch2osm.org/) and therefore uses the default OpenStreetMap style.
 
@@ -16,7 +16,7 @@ Next, download an .osm.pbf extract from geofabrik.de for the region that you're 
 docker run \
     -v /absolute/path/to/luxembourg.osm.pbf:/data.osm.pbf \
     -v openstreetmap-data:/var/lib/postgresql/12/main \
-    overv/openstreetmap-tile-server \
+    aesolutionssrl/marin-osm \
     import
 ```
 
@@ -32,7 +32,7 @@ docker run \
     -v /absolute/path/to/luxembourg.osm.pbf:/data.osm.pbf \
     -v /absolute/path/to/luxembourg.poly:/data.poly \
     -v openstreetmap-data:/var/lib/postgresql/12/main \
-    overv/openstreetmap-tile-server \
+    aesolutionssrl/marin-osm \
     import
 ```
 
@@ -47,7 +47,7 @@ docker run \
     -e DOWNLOAD_PBF=https://download.geofabrik.de/europe/luxembourg-latest.osm.pbf \
     -e DOWNLOAD_POLY=https://download.geofabrik.de/europe/luxembourg.poly \
     -v openstreetmap-data:/var/lib/postgresql/12/main \
-    overv/openstreetmap-tile-server \
+    aesolutionssrl/marin-osm \
     import
 ```
 
@@ -59,7 +59,7 @@ Run the server like this:
 docker run \
     -p 8080:80 \
     -v openstreetmap-data:/var/lib/postgresql/12/main \
-    -d overv/openstreetmap-tile-server \
+    -d aesolutionssrl/marin-osm \
     run
 ```
 
@@ -79,7 +79,7 @@ docker run \
     -p 8080:80 \
     -v openstreetmap-data:/var/lib/postgresql/12/main \
     -v openstreetmap-rendered-tiles:/var/lib/mod_tile \
-    -d overv/openstreetmap-tile-server \
+    -d aesolutionssrl/marin-osm \
     run
 ```
 
@@ -95,7 +95,7 @@ docker run \
     -e UPDATES=enabled \
     -v openstreetmap-data:/var/lib/postgresql/12/main \
     -v openstreetmap-rendered-tiles:/var/lib/mod_tile \
-    -d overv/openstreetmap-tile-server \
+    -d aesolutionssrl/marin-osm \
     run
 ```
 
@@ -110,7 +110,7 @@ docker run \
     -p 8080:80 \
     -v openstreetmap-data:/var/lib/postgresql/12/main \
     -e ALLOW_CORS=enabled \
-    -d overv/openstreetmap-tile-server \
+    -d aesolutionssrl/marin-osm \
     run
 ```
 
@@ -123,7 +123,7 @@ docker run \
     -p 8080:80 \
     -p 5432:5432 \
     -v openstreetmap-data:/var/lib/postgresql/12/main \
-    -d overv/openstreetmap-tile-server \
+    -d aesolutionssrl/marin-osm \
     run
 ```
 
@@ -141,7 +141,7 @@ docker run \
     -p 5432:5432 \
     -e PGPASSWORD=secret \
     -v openstreetmap-data:/var/lib/postgresql/12/main \
-    -d overv/openstreetmap-tile-server \
+    -d aesolutionssrl/marin-osm \
     run
 ```
 
@@ -157,7 +157,7 @@ docker run \
     -p 8080:80 \
     -e THREADS=24 \
     -v openstreetmap-data:/var/lib/postgresql/12/main \
-    -d overv/openstreetmap-tile-server \
+    -d aesolutionssrl/marin-osm \
     run
 ```
 
@@ -169,7 +169,7 @@ docker run \
     -p 8080:80 \
     -e "OSM2PGSQL_EXTRA_ARGS=-C 4096" \
     -v openstreetmap-data:/var/lib/postgresql/12/main \
-    -d overv/openstreetmap-tile-server \
+    -d aesolutionssrl/marin-osm \
     run
 ```
 
@@ -181,7 +181,7 @@ docker run \
     -p 8080:80 \
     -e AUTOVACUUM=off \
     -v openstreetmap-data:/var/lib/postgresql/12/main \
-    -d overv/openstreetmap-tile-server \
+    -d aesolutionssrl/marin-osm \
     run
 ```
 
@@ -195,7 +195,7 @@ docker run \
     -v openstreetmap-nodes:/nodes \
     -v openstreetmap-data:/var/lib/postgresql/12/main \
     -e "OSM2PGSQL_EXTRA_ARGS=--flat-nodes /nodes/flat_nodes.bin" \
-    overv/openstreetmap-tile-server \
+    aesolutionssrl/marin-osm \
     import
 ```
 
@@ -220,7 +220,7 @@ docker run \
     -p 8080:80 \
     -v openstreetmap-data:/var/lib/postgresql/12/main \
     --shm-size="192m" \
-    -d overv/openstreetmap-tile-server \
+    -d aesolutionssrl/marin-osm \
     run
 ```
 For too high values you may notice excessive CPU load and memory usage. It might be that you will have to experimentally find the best values for yourself.

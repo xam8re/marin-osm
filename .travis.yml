@@ -7,14 +7,14 @@ services:
 before_install:
 - echo "Before install"
 before_script:
-- docker pull overv/openstreetmap-tile-server || true
+- docker pull aesolutionssrl/marin-osm || true
 script:
-- docker build --pull --cache-from overv/openstreetmap-tile-server --tag overv/openstreetmap-tile-server .
+- docker build --pull --cache-from aesolutionssrl/marin-osm --tag aesolutionssrl/marin-osm .
 - docker volume create openstreetmap-data
-- docker run --rm -v openstreetmap-data:/var/lib/postgresql/12/main overv/openstreetmap-tile-server import
-- docker run --rm -v openstreetmap-data:/var/lib/postgresql/12/main -p 8080:80 -d overv/openstreetmap-tile-server run
+- docker run --rm -v openstreetmap-data:/var/lib/postgresql/12/main aesolutionssrl/marin-osm import
+- docker run --rm -v openstreetmap-data:/var/lib/postgresql/12/main -p 8080:80 -d aesolutionssrl/marin-osm run
 - sleep 30
-- make DOCKER_IMAGE=overv/openstreetmap-tile-server stop
+- make DOCKER_IMAGE=aesolutionssrl/marin-osm stop
 after_script:
 - docker images
 after_success:
@@ -22,7 +22,7 @@ after_success:
   then
   docker images ;
   echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin ;
-  docker push overv/openstreetmap-tile-server ;
+  docker push aesolutionssrl/marin-osm ;
   fi
 notifications:
   email: true
