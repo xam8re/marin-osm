@@ -5,6 +5,9 @@ services:
     image: overv/openstreetmap-tile-server
     volumes:
       - openstreetmap-data:/var/lib/postgresql/12/main
+    environment:
+      - DOWNLOAD_PBF=https://download.geofabrik.de/europe/italy-latest.osm.pbf
+      - DOWNLOAD_POLY=https://download.geofabrik.de/europe/italy.poly
     ports:
       - "8080:80"
     command: "run"
